@@ -17,7 +17,6 @@ app.use((req, res, next) => {
   next();
 });
 
-
 // Роут для главной страницы
 app.get("/", (req, res) => {
   res.render("index", { title: "Oxana_Te", text: "" });
@@ -36,7 +35,7 @@ app.get("/news", async (req, res) => {
 
     // Общее количество страниц
     const totalPages = Math.ceil(articles.length / limit);
-  res.render("news", {
+    res.render("news", {
       title: "Актуальные новости",
       articles: paginatedArticles,
       currentPage: page,
@@ -44,14 +43,14 @@ app.get("/news", async (req, res) => {
       prevPage: page > 1 ? page - 1 : null, // Предыдущая страница
       nextPage: page < totalPages ? page + 1 : null, // Следующая страница
     }); // isExternal передается через res.locals
-} catch (error) {
+  } catch (error) {
     console.error("Ошибка при получении новостей:", error);
     res.render("index", { title: "Ошибка", articles: [] });
   }
 });
 
 app.get("/finans", (req, res) => {
-    res.render("index", { title: "Finanse", text: "" });
+  res.render("index", { title: "Finanse", text: "" });
   res.render("finans");
 });
 

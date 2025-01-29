@@ -18,25 +18,28 @@ mixin serviceCard(icon, title, description, link)
 
 mixin navbar()
   nav
+    img(src="/images/Logo_Oksana_Te.png" alt="Logo" class="logo")
     ul(id="sidemenu" style="right: -200px")
-      li: a(href="#header") Startseite
-      li: a(href="#about") Über mich
-      li: a(href="#services") Leistungen
-      li: a(href="#portfolio") Portfolio
-      li: a(href="#contact") Kontakt
-      li: a(href="#") News
-      li: a(href="#") Finans
-      i(class="bi bi-x" onclick="openmenu()")
-    i(class="bi bi-list" onclick="openmenu()")
+      if !isExternal
+        ul(id="sidemenu" style="right: -200px")
+          li: a(href="/") Startseite
+          li: a(href="#about") Über mich
+          li: a(href="#services") Leistungen
+          li: a(href="#portfolio") Portfolio
+          li: a(href="#contact") Kontakt
+          li: a(href="/news") News
+          li: a(href="#") Finans
+          i(class="bi bi-x" onclick="openmenu()")
+        i(class="bi bi-list" onclick="openmenu()")
 
 
-mixin pagination(currentPage, totalPages, prevPage, nextPage, bgColor = 'bg-pink-500', textColor = 'text-white', activeBgColor = 'bg-pink-700', hoverBgColor = 'bg-pink-600')
+mixin pagination(currentPage, totalPages, prevPage, nextPage, bgColor = 'text-pink-500', textColor = 'text-white', activeBgColor = 'text-pink-700', hoverBgColor = 'text-pink-600')
   .flex.justify-center.mt-4.mb-8
     //- Стрелка "Назад"
     if prevPage
-      a(href=`?page=${prevPage}` class=`mr-4 px-4 py-2 ${bgColor} ${textColor} rounded hover:${hoverBgColor}`) <--
+      a(href=`?page=${prevPage}` class=`mr-4 px-4 py-2 ${bgColor} ${textColor} rounded hover:${hoverBgColor}`) <-
     else
-      span.mr-4.px-4.py-2.bg-gray-300.text-white.rounded.cursor-not-allowed <--
+      span.mr-4.px-4.py-2.bg-gray-300.text-white.rounded.cursor-not-allowed <-
 
     //- Нумерация страниц
     - let startPage = Math.max(1, currentPage - 2);
@@ -60,6 +63,6 @@ mixin pagination(currentPage, totalPages, prevPage, nextPage, bgColor = 'bg-pink
 
     //- Стрелка "Вперед"
     if nextPage
-      a(href=`?page=${nextPage}` class=`ml-4 px-4 py-2 ${bgColor} ${textColor} rounded hover:${hoverBgColor}`) -->
+      a(href=`?page=${nextPage}` class=`ml-4 px-4 py-2 ${bgColor} ${textColor} rounded hover:${hoverBgColor}`) ->
     else
-      span.ml-4.px-4.py-2.bg-gray-300.text-white.rounded.cursor-not-allowed -->
+      span.ml-4.px-4.py-2.bg-gray-300.text-white.rounded.cursor-not-allowed ->

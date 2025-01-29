@@ -1,3 +1,4 @@
+//- extends layout
 include ./mixins.pug
 
 doctype html
@@ -13,4 +14,13 @@ html(lang="en")
     link(rel="shortcut icon", href="/images/heart.svg", type="image/x-icon")
   body
     block content
-    block scripts
+    block script
+      script(src="/js/menu.js")
+
+//- block content
+  //- include partials/_header
+  //- include partials/_about
+  //- include partials/_services
+  //- include partials/_portfolio
+  //- include partials/_contact
+  include partials/_footer
