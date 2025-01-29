@@ -1,0 +1,65 @@
+mixin portfolioItem(image, title, description, link)
+  div(class="relative group overflow-hidden rounded-lg shadow-lg")
+    img(src=image alt=title class="w-full transition-transform transform group-hover:scale-110")
+    div(class="absolute inset-0 bg-black bg-opacity-50 flex flex-col justify-center items-center opacity-0 group-hover:opacity-100 transition-opacity")
+      h3.text-lg.font-bold.text-white= title
+      p.text-gray-300.mb-4= description
+      a(href=link class="text-pink-500 hover:underline") Mehr anzeigen
+      i(class="bi bi-box-arrow-up-right")
+      
+mixin serviceCard(icon, title, description, link)
+  div 
+    
+    i(class=`bi ${icon}`)
+    h2= title
+    p= description
+    a(href=link) Mehr erfahren
+
+
+mixin navbar()
+  nav
+    ul(id="sidemenu" style="right: -200px")
+      li: a(href="#header") Startseite
+      li: a(href="#about") Über mich
+      li: a(href="#services") Leistungen
+      li: a(href="#portfolio") Portfolio
+      li: a(href="#contact") Kontakt
+      li: a(href="#") News
+      li: a(href="#") Finans
+      i(class="bi bi-x" onclick="openmenu()")
+    i(class="bi bi-list" onclick="openmenu()")
+
+
+mixin pagination(currentPage, totalPages, prevPage, nextPage, bgColor = 'bg-pink-500', textColor = 'text-white', activeBgColor = 'bg-pink-700', hoverBgColor = 'bg-pink-600')
+  .flex.justify-center.mt-4.mb-8
+    //- Стрелка "Назад"
+    if prevPage
+      a(href=`?page=${prevPage}` class=`mr-4 px-4 py-2 ${bgColor} ${textColor} rounded hover:${hoverBgColor}`) <--
+    else
+      span.mr-4.px-4.py-2.bg-gray-300.text-white.rounded.cursor-not-allowed <--
+
+    //- Нумерация страниц
+    - let startPage = Math.max(1, currentPage - 2);
+    - let endPage = Math.min(totalPages, currentPage + 2);
+
+    if startPage > 1
+      a(href=`?page=1` class=`px-4 py-2 ${bgColor} ${textColor} rounded hover:${hoverBgColor}`) 1
+      if startPage > 2
+        span.px-4.py-2 ...
+
+    - for (let i = startPage; i <= endPage; i++)
+      if i === currentPage
+        span.px-4.py-2(class=`${activeBgColor} ${textColor} rounded`)= i
+      else
+        a(href=`?page=${i}` class=`px-4 py-2 ${bgColor} ${textColor} rounded hover:${hoverBgColor}`)= i
+
+    if endPage < totalPages
+      if endPage < totalPages - 1
+        span.px-4.py-2 ...
+      a(href=`?page=${totalPages}` class=`px-4 py-2 ${bgColor} ${textColor} rounded hover:${hoverBgColor}`)= totalPages
+
+    //- Стрелка "Вперед"
+    if nextPage
+      a(href=`?page=${nextPage}` class=`ml-4 px-4 py-2 ${bgColor} ${textColor} rounded hover:${hoverBgColor}`) -->
+    else
+      span.ml-4.px-4.py-2.bg-gray-300.text-white.rounded.cursor-not-allowed -->

@@ -1,0 +1,27 @@
+#services
+  .container
+    .bgvideo
+      video(src="images/Video.2.mp4" type="video/mp4" autoplay muted loop)
+      .effect
+
+      div(id="typing-text" class="video-text")
+
+    h1.sub-title Leistungen
+    .title
+      h2.sub-title Online-Präsenz ist kein Unternehmen.
+      p
+        | Ohne Werbung gibt es keine Kunden, und
+        | ohne Kunden gibt es
+        | kein Wachstum. Der Schlüssel zum Erfolg liegt in den Menschen, die Sie erreichen. Mein Ziel ist es,
+        | Ihnen
+        | zu helfen, zu profitieren, denn nur wenn Sie erfolgreich sind, profitiere auch ich. Gemeinsam
+        | schaffen wir
+        | Wachstum und
+        | Erfolg!
+    .services-list 
+      
+      +serviceCard("bi-file-earmark-code", "Content-Management", "Effizientere Verwaltung von Content", "#contact")
+      
+      +serviceCard("bi-graph-up-arrow", "Online Marketing", "Google Ads Kampagnen", "#contact")
+      
+      +serviceCard("bi-link-45deg", "Social Media Marketing", "Markenbekanntheit steigern", "#contact")

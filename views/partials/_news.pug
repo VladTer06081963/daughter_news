@@ -1,0 +1,74 @@
+body(class="overflow-x-hidden bg-black")
+    //- img(src="./images/Logo_Oksana_Te.png" alt="Logo" class="logo")
+    //- Hero Section
+    .hero
+      div(class="h-screen bg-cover bg-center flex items-center justify-end text-white text-right p-8" style="background-image: url('images/Portrait_dunkel.png')")
+        h2(class="text-4xl md:text-6xl font-bold") My 
+          span News
+    //- Content Container
+    //- Пагинация вверху страницы
+    +pagination(currentPage, totalPages, prevPage, nextPage)
+    //- Пагинация с кастомными цветами
+    //- +pagination(currentPage, totalPages, prevPage, nextPage, 'bg-yellow-400', 'text-black', 'bg-yellow-500', 'bg-yellow-300')
+    .container.mx-auto.p-4
+      h1(class="text-3xl font-bold text-center mb-6 text-white")= title
+      ul(class="space-y-4")
+        each article in articles
+          li(class="p-4 bg-black rounded-lg shadow-md flex flex-col md:flex-row gap-4 fade-in")
+            //- Block 1
+            .flex-1
+              h2(class="text-xl text-gray-300 font-semibold")= article.title
+              p(class="text-gray-200 mb-2")= article.description
+              p(class="text-green-400 mb-2")= article.author
+            //- Block 2
+            .flex-1
+              if article.urlToImage
+                img(src=article.urlToImage alt="image" class="w-80 mx-auto md:mx-0")
+            //- Block 3
+            .flex-1.flex.items-center.justify-center
+              p(class="text-gray-200")= article.content
+                if article.url
+                  a(href=article.url target='_blank' class="text-pink-500 hover:underline text-lg") Читать далее...
+
+      +pagination(currentPage, totalPages, prevPage, nextPage).flex.justify-center.mt-8
+        //- if prevPage
+        //-   a(href=`?page=${prevPage}` class="mr-4 px-4 py-2 bg-pink-500 text-white rounded hover:bg-pink-700") Previous
+        //- if nextPage
+        //-   a(href=`?page=${nextPage}` class="px-4 py-2 bg-pink-500 text-white rounded hover:bg-pink-700") Next
+
+    script.
+      document.addEventListener('DOMContentLoaded', () => {
+        // Intersection Observer for fade-in animation
+        const observer = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('visible');
+              observer.unobserve(entry.target);
+            }
+          });
+        }, { threshold: 0.1 });
+
+        // Attach observer to each fade-in section
+        document.querySelectorAll('.fade-in').forEach(section => {
+          observer.observe(section);
+        });
+      });
+    style.
+      .fade-in {
+        opacity: 0;
+        transition: opacity 1s ease, transform 1s ease;
+        transform: translateY(20px);
+      }
+      .fade-in.visible {
+        opacity: 1;
+        transform: translateY(0);
+      }
+      body {
+        background-color: #1a202c; /* Tailwind gray-900 */
+      }
+      h1, p {
+        color: #ffffff; /* Ensure text is visible on dark background */
+      }
+      span {
+        color: hwb(330 0% 0%);
+      }
