@@ -37,9 +37,9 @@ mixin pagination(currentPage, totalPages, prevPage, nextPage, bgColor = 'text-pi
   .flex.justify-center.mt-4.mb-8
     //- Стрелка "Назад"
     if prevPage
-      a(href=`?page=${prevPage}` class=`mr-4 px-4 py-2 ${bgColor} ${textColor} rounded hover:${hoverBgColor}`) <-
+      a(href=`?page=${prevPage}` class=`mr-4 px-4 py-2 ${bgColor} ${textColor} rounded hover:${hoverBgColor}`) <
     else
-      span.mr-4.px-4.py-2.bg-gray-300.text-white.rounded.cursor-not-allowed <-
+      span.mr-4.px-4.py-2.bg-pink-300.text-white.rounded.cursor-not-allowed <
 
     //- Нумерация страниц
     - let startPage = Math.max(1, currentPage - 2);
@@ -63,6 +63,6 @@ mixin pagination(currentPage, totalPages, prevPage, nextPage, bgColor = 'text-pi
 
     //- Стрелка "Вперед"
     if nextPage
-      a(href=`?page=${nextPage}` class=`ml-4 px-4 py-2 ${bgColor} ${textColor} rounded hover:${hoverBgColor}`) ->
+      a(href=`?page=${nextPage}` class=`ml-4 px-4 py-2 ${bgColor} ${textColor} rounded hover:${hoverBgColor}`) >
     else
-      span.ml-4.px-4.py-2.bg-gray-300.text-white.rounded.cursor-not-allowed ->
+      span.ml-4.px-4.py-2.bg-gray-300.text-white.rounded.cursor-not-allowed >

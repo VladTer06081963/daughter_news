@@ -49,9 +49,9 @@ app.get("/news", async (req, res) => {
   }
 });
 
-app.get("/finans", (req, res) => {
-  res.render("index", { title: "Finanse", text: "" });
-  res.render("finans");
+app.get("/finanse", (req, res) => {
+  // res.render("index", { title: "Finanse", text: "" });
+  res.render("finanse", { title: "Oxana_Te", text: "" });
 });
 
 // Запуск сервера
