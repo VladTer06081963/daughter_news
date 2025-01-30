@@ -32,37 +32,49 @@ mixin navbar()
           i(class="bi bi-x" onclick="openmenu()")
         i(class="bi bi-list" onclick="openmenu()")
 
+//- Переменные для цветов
+- const paginationTextColor = 'text-pink-200'; // Основной цвет текста
+- const paginationHoverColor = 'text-pink-700'; // Цвет текста при наведении
+- const paginationActiveColor = 'text-pink-500'; // Цвет активной страницы
+- const paginationActiveFontWeight = 'font-bold'; // Жирный шрифт для активной страницы
+- const paginationDisabledColor = 'text-gray-400'; // Цвет неактивных элементов
+- const paginationTransition = 'transition-colors'; // Плавный переход для hover
 
-mixin pagination(currentPage, totalPages, prevPage, nextPage, bgColor = 'text-pink-500', textColor = 'text-white', activeBgColor = 'text-pink-700', hoverBgColor = 'text-pink-600')
+mixin pagination(currentPage, totalPages, prevPage, nextPage)
   .flex.justify-center.mt-4.mb-8
     //- Стрелка "Назад"
     if prevPage
-      a(href=`?page=${prevPage}` class=`mr-4 px-4 py-2 ${bgColor} ${textColor} rounded hover:${hoverBgColor}`) <
+      a(href=`?page=${prevPage}` class=`mr-4 px-4 py-2 ${paginationTextColor} hover:${paginationHoverColor} ${paginationTransition}`) <
     else
-      span.mr-4.px-4.py-2.bg-pink-300.text-white.rounded.cursor-not-allowed <
+      span.mr-4.px-4.py-2(class=`${paginationDisabledColor} cursor-not-allowed`) <
 
-    //- Нумерация страниц
-    - let startPage = Math.max(1, currentPage - 2);
-    - let endPage = Math.min(totalPages, currentPage + 2);
+    //- Первая страница
+    a(href=`?page=1` class=`px-4 py-2 ${paginationTextColor} hover:${paginationHoverColor} ${paginationTransition}`) 1
 
-    if startPage > 1
-      a(href=`?page=1` class=`px-4 py-2 ${bgColor} ${textColor} rounded hover:${hoverBgColor}`) 1
-      if startPage > 2
-        span.px-4.py-2 ...
+    //- Многоточие, если текущая страница далеко от начала
+    if currentPage > 3
+      span.px-4.py-2(class=`${paginationTextColor}`) ...
+
+    //- Текущая страница и соседние
+    - let startPage = Math.max(2, currentPage - 1);
+    - let endPage = Math.min(totalPages - 1, currentPage + 1);
 
     - for (let i = startPage; i <= endPage; i++)
       if i === currentPage
-        span.px-4.py-2(class=`${activeBgColor} ${textColor} rounded`)= i
+        span.px-4.py-2(class=`${paginationActiveColor} ${paginationActiveFontWeight}`)= i
       else
-        a(href=`?page=${i}` class=`px-4 py-2 ${bgColor} ${textColor} rounded hover:${hoverBgColor}`)= i
+        a(href=`?page=${i}` class=`px-4 py-2 ${paginationTextColor} hover:${paginationHoverColor} ${paginationTransition}`)= i
 
-    if endPage < totalPages
-      if endPage < totalPages - 1
-        span.px-4.py-2 ...
-      a(href=`?page=${totalPages}` class=`px-4 py-2 ${bgColor} ${textColor} rounded hover:${hoverBgColor}`)= totalPages
+    //- Многоточие, если текущая страница далеко от конца
+    if currentPage < totalPages - 2
+      span.px-4.py-2(class=`${paginationTextColor}`) ...
+
+    //- Последняя страница
+    if totalPages > 1
+      a(href=`?page=${totalPages}` class=`px-4 py-2 ${paginationTextColor} hover:${paginationHoverColor} ${paginationTransition}`)= totalPages
 
     //- Стрелка "Вперед"
     if nextPage
-      a(href=`?page=${nextPage}` class=`ml-4 px-4 py-2 ${bgColor} ${textColor} rounded hover:${hoverBgColor}`) >
+      a(href=`?page=${nextPage}` class=`ml-4 px-4 py-2 ${paginationTextColor} hover:${paginationHoverColor} ${paginationTransition}`) >
     else
-      span.ml-4.px-4.py-2.bg-gray-300.text-white.rounded.cursor-not-allowed >
+      span.ml-4.px-4.py-2(class=`${paginationDisabledColor} cursor-not-allowed`) >
