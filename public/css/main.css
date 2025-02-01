@@ -14,12 +14,19 @@ body {
   color: #fff;
 }
 
-#header {
+#header, #header_news {
   width: 100%;
   height: 100vh;
-  background-image: url(../images/Back_1.PNG);
   background-size: cover;
   background-position: center;
+}
+#header {
+  background-image: url(../images/Back_1.PNG); 
+}
+
+#header_news {
+
+  background-color: #000000; 
 }
 
 .container {
@@ -394,7 +401,7 @@ form .btn2 {
   width: 100%;
   text-align: center;
   padding: 50px 0;
-  background: #262626;
+  background: #000000;
   font-weight: 300;
   margin-top: 15px;
 }
