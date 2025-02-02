@@ -2,7 +2,6 @@ body(class="overflow-x-hidden bg-black")
 #header_news(class="overflow-x-hidden bg-black")
   .container
     .hero
-      //- div(class="h-screen bg-cover bg-center flex items-center justify-end text-white text-right p-8" style="background-image: url('images/Portrait_dunkel.png')")
       h2(class="text-4xl md:text-6xl font-bold text-right") My 
         span News
     //- Content Container
@@ -30,11 +29,8 @@ body(class="overflow-x-hidden bg-black")
                 if article.url
                   a(href=article.url target='_blank' class="text-pink-500 hover:underline text-lg") Читать далее...
 
-      +pagination(currentPage, totalPages, prevPage, nextPage).flex.justify-center.mt-8
-        //- if prevPage
-        //-   a(href=`?page=${prevPage}` class="mr-4 px-4 py-2 bg-pink-500 text-white rounded hover:bg-pink-700") Previous
-        //- if nextPage
-        //-   a(href=`?page=${nextPage}` class="px-4 py-2 bg-pink-500 text-white rounded hover:bg-pink-700") Next
+    +pagination(currentPage, totalPages, prevPage, nextPage).flex.justify-center.mt-8
+
 
     script.
       document.addEventListener('DOMContentLoaded', () => {

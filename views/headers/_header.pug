@@ -1,16 +1,7 @@
 #header
   //- header(class="h-screen bg-cover bg-center relative" style="background-image: url('/images/Back_1.PNG')")
   .container
-    //- +navbar(false)
-    nav
-      img(src="/images/Logo_Oksana_Te.png" alt="Logo" class="logo")
-      ul(id="sidemenu" style="right: -200px")
-        li: a(href="/") Start
-        li: a(href="/news") News
-        li: a(href="/finanse") Finans
-        i(class="bi bi-x" onclick="openmenu()")
-      i(class="bi bi-list" onclick="openmenu()")
-        
+    +navbar(true)
     .header-text
       p Daraus beziehe
       h1

@@ -6,7 +6,7 @@ mixin portfolioItem(image, title, description, link)
       p.text-gray-300.mb-4= description
       a(href=link class="text-pink-500 hover:underline") Mehr anzeigen
       i(class="bi bi-box-arrow-up-right")
-      
+
 mixin serviceCard(icon, title, description, link)
   div 
     
@@ -15,22 +15,32 @@ mixin serviceCard(icon, title, description, link)
     p= description
     a(href=link) Mehr erfahren
 
+mixin head(isExternal)
+   head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title #{title}
+    link(href="/css/style.css" rel="stylesheet")
+    link(href="/css/main.css" rel="stylesheet")
+    link(href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet")
+    if !isExternal
+      link(href="/css/bg-video.css" rel="stylesheet")
+    link(rel="shortcut icon", href="/images/heart.svg", type="image/x-icon")
 
-mixin navbar()
+mixin navbar(isExternal)
   nav
     img(src="/images/Logo_Oksana_Te.png" alt="Logo" class="logo")
     ul(id="sidemenu" style="right: -200px")
+      li: a(href="/") Start
       if !isExternal
-        ul(id="sidemenu" style="right: -200px")
-          li: a(href="/") Startseite
-          li: a(href="#about") Über mich
-          li: a(href="#services") Leistungen
-          li: a(href="#portfolio") Portfolio
-          li: a(href="#contact") Kontakt
-          li: a(href="/news") News
-          li: a(href="/finanse") Finans
-          i(class="bi bi-x" onclick="openmenu()")
-        i(class="bi bi-list" onclick="openmenu()")
+        li: a(href="#about") Über mich
+        li: a(href="#services") Leistungen
+        li: a(href="#portfolio") Portfolio
+        li: a(href="#contact") Kontakt
+      li: a(href="/news") News
+      li: a(href="/finanse") Finans
+      i(class="bi bi-x" onclick="openmenu()")
+    i(class="bi bi-list" onclick="openmenu()")
 
 //- Переменные для цветов
 - const paginationTextColor = 'text-pink-200'; // Основной цвет текста
