@@ -2,6 +2,7 @@
 require("dotenv").config();
 const express = require("express");
 const path = require("path");
+const fetch = require("node-fetch");
 const { getTopHeadlines } = require("./apiService");
 const app = express();
 
@@ -19,7 +20,7 @@ app.use((req, res, next) => {
 
 // Роут для главной страницы
 app.get("/", (req, res) => {
-  res.render("index", { title: "Oxana_Te", text: "" });
+  res.render("index", { title: "Oxana_Te", text: "Oksana" });
 });
 
 app.get("/news", async (req, res) => {
@@ -46,12 +47,18 @@ app.get("/news", async (req, res) => {
   } catch (error) {
     console.error("Ошибка при получении новостей:", error);
     res.render("index", { title: "Ошибка", articles: [] });
+
   }
 });
 
 app.get("/finanse", (req, res) => {
   // res.render("index", { title: "Finanse", text: "" });
-  res.render("finanse", { title: "Oxana_Te", text: "" });
+  res.render("finanse", { title: "Oxana_Te", text: "Hello Finanse" });
+});
+app.get("/admin", (req, res) => {
+  // res.render("index", { title: "Finanse", text: "" });
+  res.render("admin", { title: "Oxana_Te_Admin", text: "Oksana" });
+  
 });
 
 // Запуск сервера

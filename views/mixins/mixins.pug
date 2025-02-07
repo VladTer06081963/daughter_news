@@ -29,7 +29,8 @@ mixin head(isExternal)
 
 mixin navbar(isExternal)
   nav
-    img(src="/images/Logo_Oksana_Te.png" alt="Logo" class="logo")
+    a(href="/admin")
+      img(src="/images/Logo_Oksana_Te.png" alt="Logo" class="logo")
     ul(id="sidemenu" style="right: -200px")
       li: a(href="/") Start
       if !isExternal
